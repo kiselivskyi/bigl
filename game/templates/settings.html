@@ -1,0 +1,73 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html class="full" lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>TIC TAC TOE</title>
+
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/jquery-2.2.4.min.js' %}"></script>
+
+    <script type="text/javascript">
+	    $(document).ready(function(){
+			$('[data-toggle="tooltip"]').tooltip();   
+		});
+	</script>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation"></nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10 well game_field">
+				<h1 class="greet">Welcome to TIC TAC TOE!</h1>
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<form class="alert alert-success" method="post">
+						{% csrf_token %}
+						<h4>Player 1: &nbsp &nbsp <span id="p1">{{ players.name1 }}</span></h4>
+						<h4>Player 2: &nbsp &nbsp <span id="p2">{{ players.name2 }}</span></h4>					
+						<label for="size">Choose the game field size:</label>
+						<select class="form-control input-md" name="size" required autofocus>
+							<option value="3">3x3</option>
+							<option value="4">4x4</option>
+							<option value="5">5x5</option>
+							<option value="6">6x6</option>
+							<option value="7">7x7</option>
+							<option value="8">8x8</option>
+							<option value="9">9x9</option>
+							<option value="10">10x10</option>
+						</select>
+						<div class="checkbox">
+							<label for="diagonal" data-toggle="tooltip" data-placement="left" 
+								title="You won't win collecting diagonals">
+								<input type="checkbox" name="diagonal">"Diagonal ban" mode</input>
+							</label>
+						</div>
+						<button class="btn btn-lg btn-success btn-block" name="form2.submitted" type="submit">Start Game!</button>
+						<a href="/" class="abtn btn btn-lg btn-danger btn-block" role="button">Change Player names</a>
+					</form>
+				</div>
+				<div class="col-md-4"></div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+    
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+</body>
+
+</html>
